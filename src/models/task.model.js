@@ -6,6 +6,7 @@ var Task = function (task) {
   this.description = task.description;
   this.duration_time = task.duration_time;
   this.date_hour = task.date_hour;
+  this.place = task.place;
 };
 
 Task.create = (newTask, result) => {
@@ -57,12 +58,13 @@ Task.delete = function (id, result) {
 
 Task.update = function (id, task, result) {
   dbConn.query(
-    "UPDATE tasks SET title=?,description=?,duration_time=?,date_hour=? WHERE id = ?",
+    "UPDATE tasks SET title=?,description=?,duration_time=?,date_hour=?, place=? WHERE id = ?",
     [
       task.title,
       task.description,
       task.duration_time,
       task.date_hour,
+      task.place,
       id,
     ],
     function (err, res) {
@@ -75,6 +77,5 @@ Task.update = function (id, task, result) {
     }
   );
 };
- 
 
 module.exports = Task;
