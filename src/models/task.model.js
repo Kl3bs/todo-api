@@ -45,6 +45,17 @@ Task.findById = function (id, result) {
   });
 };
 
+Task.findByTitle = function (title, result) {
+  dbConn.query("Select * from tasks where id = ? ", 1, function (err, res) {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+    } else {
+      result(null, res);
+    }
+  });
+};
+
 Task.delete = function (id, result) {
   dbConn.query("Delete from tasks where id = ? ", id, function (err, res) {
     if (err) {

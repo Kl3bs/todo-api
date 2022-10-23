@@ -36,6 +36,15 @@ exports.findById = function (req, res) {
   });
 };
 
+exports.findByTitle = function (req, res) {
+  let task = req.query["task"];
+
+  Task.findByTitle(task, function (err, task) {
+    if (err) res.send(err);
+    res.json(task);
+  });
+};
+
 exports.update = function (req, res) {
   if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
     res
