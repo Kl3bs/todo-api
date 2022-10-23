@@ -2,12 +2,24 @@
 const Task = require("../models/task.model");
 
 exports.findAll = function (req, res) {
-  Task.findAll(function (err, task) {
-    console.log("controller");
-    if (err) res.send(err);
-    console.log("res", task);
-    res.send(task);
-  });
+  let title = req.query["title"];
+
+  if (title) {
+    console.log("TEM TITULO");
+
+    Task.findByTitle(title, function (err, task) {
+      if (err) res.send(err);
+      console.log("res", task);
+      res.send(task);
+    });
+  } else {
+    Task.findAll(function (err, task) {
+      console.log("controller");
+      if (err) res.send(err);
+      console.log("res", task);
+      res.send(task);
+    });
+  }
 };
 
 exports.create = function (req, res) {
@@ -36,15 +48,6 @@ exports.findById = function (req, res) {
   });
 };
 
-exports.findByTitle = function (req, res) {
-  let task = req.query["task"];
-
-  Task.findByTitle(task, function (err, task) {
-    if (err) res.send(err);
-    res.json(task);
-  });
-};
-
 exports.update = function (req, res) {
   if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
     res
@@ -63,4 +66,9 @@ exports.delete = function (req, res) {
     if (err) res.send(err);
     res.json({ error: false, message: "Task successfully deleted" });
   });
+};
+
+exports.search = function (req, res) {
+  let title = req.query.title;
+  return res.send(`Apenas um teste ${title}`);
 };

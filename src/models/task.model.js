@@ -34,19 +34,24 @@ Task.findAll = function (result) {
   });
 };
 
-Task.findById = function (id, result) {
-  dbConn.query("Select * from tasks where id = ? ", id, function (err, res) {
-    if (err) {
-      console.log("error: ", err);
-      result(err, null);
-    } else {
-      result(null, res);
+Task.findByTitle = function (title, result) {
+  title = `%${title}%`;
+  dbConn.query(
+    "Select * from tasks where title like ? ",
+    title,
+    function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+      } else {
+        result(null, res);
+      }
     }
-  });
+  );
 };
 
-Task.findByTitle = function (title, result) {
-  dbConn.query("Select * from tasks where id = ? ", 1, function (err, res) {
+Task.findById = function (id, result) {
+  dbConn.query("Select * from tasks where id = ? ", id, function (err, res) {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -88,5 +93,7 @@ Task.update = function (id, task, result) {
     }
   );
 };
+
+Task.search = function (task, result) {};
 
 module.exports = Task;
