@@ -1,6 +1,5 @@
 "use strict";
 var dbConn = require("./../../config/db.config");
-//Employee object create
 var Task = function (task) {
   this.title = task.title;
   this.description = task.description;
