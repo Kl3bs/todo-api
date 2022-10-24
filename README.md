@@ -25,5 +25,5 @@ npm start
 | `GET`    | /api/v1/tasks/id               | Retorna a task com base no id fornecido         |
 | `PUT`    | /api/v1/tasks/id               | Edita a task com base no id fornecido           |
 | `DELETE` | /api/v1/tasks/id               | Deleta a task com base no id fornecido          |
-| `POST`   | /api/v1/tasks                  | Aiciona uma nova task                           |
+| `POST`   | /api/v1/tasks                  | Adiciona uma nova task                          |
 | `GET`    | /api/v1/tasks?title=task_title | Array com as tasks filtradas pela query `title` |
