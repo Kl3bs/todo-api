@@ -5,8 +5,6 @@ exports.findAll = function (req, res) {
   let title = req.query["title"];
 
   if (title) {
-    console.log("TEM TITULO");
-
     Task.findByTitle(title, function (err, task) {
       if (err) res.send(err);
       console.log("res", task);
